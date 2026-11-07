@@ -25,12 +25,12 @@ Format a round like so:
 
 <The question, with its options. Give each option a concrete example of what the result looks like.>
 
-➡️ <your recommended answer, with the reason>
+➡️ <your recommended answer, with one reason>
 
 🗺️ <path to the board's index.html>
 ```
 
-Word each question so "yes" accepts your recommended answer. The chat message must be answerable on its own; the board adds depth. When the user comes back unsure where things stand, resend the current round more simply, with a new example.
+Word each question so "yes" accepts your recommended answer and settles exactly one decision, leaving every other decision in the tree open. The chat message must be answerable on its own; the board adds depth. When the user comes back unsure where things stand, resend the current round more simply, with a new example.
 
 Each round the user answers reshapes the tree: settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round.
 
@@ -47,7 +47,7 @@ Before the first round, set up `<OS temp dir>/grill-boards/<project>-<topic>/`, 
 
 Before sending each round, overwrite `board.js` in that folder. Its shape is in [`board/board.example.js`](board/board.example.js). The open page picks up the change within two seconds, so only `board.js` ever changes.
 
-Fill `board.js` for a cold read: `decisions` holds every decision in the design tree with its status, and `whereWeAre` explains why this question is next. `questions` holds one entry per question in this round. Give a question a `diagram` whenever the choice involves a flow, a structure, or a before and after.
+Fill `board.js` for a cold read: `decisions` holds every decision in the design tree with its status, and `whereWeAre` explains why this question is next. `questions` holds one entry per question in this round. Give a question a `diagram` whenever the choice involves a flow, a structure, or a before and after. Keep its `recommendation` to the pick and one reason, and put numbers, test results, and known risks in its `evidence`. List any technical term a reader could have forgotten in `terms`.
 
 ## Finishing
 

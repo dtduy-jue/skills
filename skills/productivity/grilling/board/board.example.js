@@ -24,7 +24,10 @@ window.BOARD = {
         { label: "24 hours", summary: "Safest, more re-sends.", example: "An invite sent on Friday evening is dead by Monday." },
         { label: "Never", summary: "No re-sends, forwarded links stay live forever.", example: "A link in an old email thread still works next year." },
       ],
+      // The pick and one reason.
       recommendation: "7 days. It keeps re-sends rare and still closes old links.",
+      // Optional. Numbers, test results, and known risks, in plain words. Collapsed until opened.
+      evidence: ["Last quarter, 92% of invites were opened within 3 days.", "Risk: partners with long approval chains may need more re-sends."],
     },
   ],
   // Every decision in the design tree. This is the session's full state, and draws the decision map.

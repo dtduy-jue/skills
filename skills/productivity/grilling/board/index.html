@@ -33,6 +33,8 @@
   .tag { font-size: 12px; font-weight: 600; color: var(--accent); margin-left: 6px; }
   .example { color: var(--muted); font-size: 15px; }
   .reco { margin-top: 12px; padding: 10px 12px; border-radius: 8px; background: var(--accent-soft); }
+  .evidence { margin-top: 10px; font-size: 15px; color: var(--muted); }
+  .evidence summary { cursor: pointer; font-weight: 600; }
   .diagram { overflow: auto; margin-top: 10px; }
   .diagram svg { display: block; margin: 0 auto; }
   .diagram .node { cursor: pointer; }
@@ -58,7 +60,7 @@
 <script>
   const STYLES = { settled: "fill:#16794c,stroke:#16794c,color:#fff", current: "fill:#b45309,stroke:#b45309,color:#fff", open: "fill:#6b7280,stroke:#6b7280,color:#fff" };
   const dark = matchMedia("(prefers-color-scheme: dark)").matches;
-  if (window.mermaid) mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "neutral" });
+  if (window.mermaid) mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "neutral", flowchart: { subGraphTitleMargin: { top: 6, bottom: 26 } } });
 
   let last = null, zoom = 1, selected = null, renderCount = 0;
 
@@ -73,7 +75,7 @@
 
   function treeSource(decisions) {
     const ids = new Map(decisions.map((d, i) => [d.id, "n" + i]));
-    const lines = ["flowchart TD"];
+    const lines = ['%%{init: {"flowchart": {"wrappingWidth": 150, "rankSpacing": 30, "nodeSpacing": 18, "padding": 8}}}%%', "flowchart LR"];
     decisions.forEach((d, i) => {
       lines.push(`n${i}["${treeLabel(d.title)}"]`);
       lines.push(`style n${i} ${STYLES[d.status] || STYLES.open}`);
@@ -83,7 +85,9 @@
   }
 
   function applyZoom(graphic) {
-    graphic.style.width = graphic.viewBox.baseVal.width * zoom + "px";
+    const natural = graphic.viewBox.baseVal.width;
+    const available = graphic.parentElement.clientWidth || natural;
+    graphic.style.width = Math.min(natural, available) * zoom + "px";
   }
 
   async function drawDiagram(host, source, onNodeClick) {
@@ -120,6 +124,7 @@
         para(option.example, "example")));
     }
     if (q.recommendation) card.append(el("div", { className: "reco" }, el("span", { className: "label" }, "Recommendation: "), q.recommendation));
+    if (q.evidence && q.evidence.length) card.append(el("details", { className: "evidence" }, el("summary", {}, "Evidence"), el("ul", {}, ...q.evidence.map((item) => el("li", {}, item)))));
     return card;
   }
 
