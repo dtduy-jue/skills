@@ -103,8 +103,9 @@
     }
   }
 
-  function questionCard(q) {
-    const card = el("section", { className: "card current" }, el("h2", {}, "Your decision right now"), el("h3", {}, q.title));
+  function questionCard(q, index, total) {
+    const heading = total > 1 ? `Decision ${index + 1} of ${total}` : "Your decision right now";
+    const card = el("section", { className: "card current" }, el("h2", {}, heading), el("h3", {}, q.title));
     card.append(...[para(q.why), para(q.ask, "label"), para(q.example, "example")].filter(Boolean));
     if (q.diagram) {
       const host = el("div", { className: "diagram" });
@@ -165,7 +166,7 @@
       el("header", {}, el("h1", {}, board.topic || "Grilling"),
         el("div", { className: "meta" }, `${board.project || ""} · round ${board.round ?? "?"} · ${settled.length} settled, ${open.length} still open`)),
       el("section", { className: "card" }, el("h2", {}, "Where we are"), para(board.goal, "label"), para(board.whereWeAre)),
-      ...(board.question ? [questionCard(board.question)] : []),
+      ...(board.questions || []).map((q, index, all) => questionCard(q, index, all.length)),
       ...(decisions.length ? [mapCard(decisions)] : []),
       grid,
       ...(board.terms && board.terms.length ? [listCard("Words used here", board.terms, (t) => [el("span", { className: "label" }, t.term + ": "), t.meaning])] : []));

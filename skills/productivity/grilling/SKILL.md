@@ -12,7 +12,7 @@ Hold two stances for the whole session:
 
 ## Rounds
 
-The **frontier** is every decision whose prerequisites are already settled: the questions you can ask _now_ without guessing at answers you haven't heard yet. Each round, ask **one** frontier question, the one whose answer unblocks the most, then wait for the user's answer. Put several frontier questions in one round only when the user asks for a batch.
+The **frontier** is every decision whose prerequisites are already settled: the questions you can ask _now_ without guessing at answers you haven't heard yet. Each round, ask **one** frontier question, the one whose answer unblocks the most, then wait for the user's answer. Put several frontier questions in one round only when the user asks for a batch: number them, and repeat the ❓ through ➡️ part of the format for each. A question whose answer depends on another question still open in this round belongs to a _later_ round.
 
 Format a round like so:
 
@@ -47,7 +47,7 @@ Before the first round, set up `<OS temp dir>/grill-boards/<project>-<topic>/`, 
 
 Before sending each round, overwrite `board.js` in that folder. Its shape is in [`board/board.example.js`](board/board.example.js). The open page picks up the change within two seconds, so only `board.js` ever changes.
 
-Fill `board.js` for a cold read: `decisions` holds every decision in the design tree with its status, and `whereWeAre` explains why this question is next. Add `question.diagram` whenever the choice involves a flow, a structure, or a before and after.
+Fill `board.js` for a cold read: `decisions` holds every decision in the design tree with its status, and `whereWeAre` explains why this question is next. `questions` holds one entry per question in this round. Give a question a `diagram` whenever the choice involves a flow, a structure, or a before and after.
 
 ## Finishing
 

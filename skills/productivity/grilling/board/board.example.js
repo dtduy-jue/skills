@@ -8,22 +8,25 @@ window.BOARD = {
   // Two or three sentences for someone who forgot this session: what just got settled, and why this question is next.
   whereWeAre:
     "You chose single-use links last round, so each link now belongs to one invited person. That raises the next question: how long a link stays valid.",
-  // The one decision being asked now. Mirrors the chat message, with more room to explain.
-  question: {
-    title: "How long should an invite link stay valid?",
-    why: "This decides how often partners have to re-send invites, and how long a forwarded link stays dangerous.",
-    ask: "Should links expire after 7 days?",
-    example:
-      "Example: a partner invites Lan on Monday. Lan is on leave until the following Wednesday. With 7 days, Lan's link has expired and the partner must re-send it.",
-    // Optional Mermaid source. Include it when the choice involves a flow, a structure, or a before and after.
-    diagram: "flowchart LR\n  A[Partner sends link] --> B{Opened within 7 days?}\n  B -->|Yes| C[Account created]\n  B -->|No| D[Link expired, partner re-sends]",
-    options: [
-      { label: "7 days", summary: "Covers normal delays, limits exposure.", example: "Most invites work. Long leave needs a re-send.", recommended: true },
-      { label: "24 hours", summary: "Safest, more re-sends.", example: "An invite sent on Friday evening is dead by Monday." },
-      { label: "Never", summary: "No re-sends, forwarded links stay live forever.", example: "A link in an old email thread still works next year." },
-    ],
-    recommendation: "7 days. It keeps re-sends rare and still closes old links.",
-  },
+  // The decisions being asked now: one entry, or several when the user asked for a batch.
+  // Each mirrors its chat question, with more room to explain.
+  questions: [
+    {
+      title: "How long should an invite link stay valid?",
+      why: "This decides how often partners have to re-send invites, and how long a forwarded link stays dangerous.",
+      ask: "Should links expire after 7 days?",
+      example:
+        "Example: a partner invites Lan on Monday. Lan is on leave until the following Wednesday. With 7 days, Lan's link has expired and the partner must re-send it.",
+      // Optional Mermaid source. Include it when the choice involves a flow, a structure, or a before and after.
+      diagram: "flowchart LR\n  A[Partner sends link] --> B{Opened within 7 days?}\n  B -->|Yes| C[Account created]\n  B -->|No| D[Link expired, partner re-sends]",
+      options: [
+        { label: "7 days", summary: "Covers normal delays, limits exposure.", example: "Most invites work. Long leave needs a re-send.", recommended: true },
+        { label: "24 hours", summary: "Safest, more re-sends.", example: "An invite sent on Friday evening is dead by Monday." },
+        { label: "Never", summary: "No re-sends, forwarded links stay live forever.", example: "A link in an old email thread still works next year." },
+      ],
+      recommendation: "7 days. It keeps re-sends rare and still closes old links.",
+    },
+  ],
   // Every decision in the design tree. This is the session's full state, and draws the decision map.
   // status: "settled" | "current" | "open". parent: the id of the decision this one hangs off.
   decisions: [
