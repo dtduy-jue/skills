@@ -92,8 +92,9 @@
       const { svg } = await mermaid.render("d" + ++renderCount, source);
       host.innerHTML = svg;
       const graphic = host.querySelector("svg");
-      graphic.style.maxWidth = "none";
+      graphic.style.maxWidth = onNodeClick ? "none" : "100%";
       if (onNodeClick) applyZoom(graphic);
+      else graphic.style.width = graphic.viewBox.baseVal.width + "px";
       if (onNodeClick) host.querySelectorAll(".node").forEach((node) => {
         const match = node.id.match(/flowchart-n(\d+)-/);
         if (match) node.addEventListener("click", () => onNodeClick(Number(match[1])));
