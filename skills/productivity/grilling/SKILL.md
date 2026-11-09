@@ -23,9 +23,14 @@ Format a round like so:
 
 <Why it matters: what the answer changes in the result, in plain words.>
 
-<The question, with its options. Give each option a concrete example of what the result looks like.>
+<The question.>
 
-➡️ <your recommended answer, with one reason>
+| Option | Pros | Cons | Example |
+| --- | --- | --- | --- |
+| **<A. option>** (recommended) | <what it gets right> | <what it costs> | <what the result looks like> |
+| **<B. option>** | <what it gets right> | <what it costs> | <what the result looks like> |
+
+➡️ **<A. option>**: <why it beats the others, in one or two sentences, naming the con you accept>
 
 🗺️ <path to the board file>
 ```
@@ -59,10 +64,10 @@ Before sending each round, update the board in this shape:
 
 <A Mermaid diagram, whenever the choice involves a flow, a structure, or a before and after.>
 
-| Option | What it means | Example |
-| --- | --- | --- |
+| Option | Pros | Cons | Example |
+| --- | --- | --- | --- |
 
-**Recommendation:** <the pick and one reason>
+**Recommendation:** <the pick, and why it beats the others>
 
 **Evidence:** <numbers, test results, and known risks, when there are any>
 
