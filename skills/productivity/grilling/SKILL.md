@@ -17,8 +17,6 @@ The **frontier** is every decision whose prerequisites are already settled: the 
 Format a round like so:
 
 ```
-📍 **<topic>**: <what we are deciding overall, in one sentence>. <What the last answer settled, in one sentence>. <n> settled, <m> open.
-
 ❓ **<question title>**
 
 <Why it matters: what the answer changes in the result, in plain words.>
@@ -27,8 +25,8 @@ Format a round like so:
 
 | Option | Pros | Cons | Example |
 | --- | --- | --- | --- |
-| **<A. option>** (recommended) | <what it gets right> | <what it costs> | <what the result looks like> |
-| **<B. option>** | <what it gets right> | <what it costs> | <what the result looks like> |
+| **<A. option>** (recommended) | <what it gets right> | <what it costs. Worst: <the worst that can happen>> | <what the result looks like> |
+| **<B. option>** | <what it gets right> | <what it costs. Worst: <the worst that can happen>> | <what the result looks like> |
 
 ➡️ **<A. option>**: <why it beats the others, in one or two sentences, naming the con you accept>
 
